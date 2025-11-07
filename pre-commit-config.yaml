@@ -1,0 +1,18 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 9136088a246768144165fcc3ecc3d31bb686920a # v3.3.0
+    hooks:
+    -   id: detect-private-key
+-   repo: https://github.com/Yelp/detect-secrets
+    rev: c09b466f7600e35e093c5da0437eca74a7c7a459 # v0.14.3
+    hooks:
+    -   id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: .*/keys/.*|
+              (?x)(
+                     ^package-lock.json$/|
+                     ^Pipfile/|
+                     ^pyproject.toml
+              )
